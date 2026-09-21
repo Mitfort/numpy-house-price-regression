@@ -207,8 +207,22 @@ def prepare_cleaned_features(X, iqr_k=1.5):
 
     return X_clipped
 
-# Step 20 - assemble_feature_matrix (not yet solved)
-# TODO: implement
+# Step 20 - assemble_feature_matrix
+import numpy as np
+def assemble_feature_matrix(X_num, ratio_num_idx, ratio_den_idx, cat_labels=None):
+    
+    num = X_num[:,ratio_num_idx]
+    den = X_num[:,ratio_den_idx]
+
+    ratio_column = make_ratio_feature(num,den)
+
+    matrix = append_column(X_num,ratio_column)
+
+    if cat_labels is not None:
+        one_hot = one_hot_encode(cat_labels)
+        matrix = np.concatenate([matrix,one_hot],axis=1)
+
+    return matrix
 
 # Step 21 - make_train_val_test (not yet solved)
 # TODO: implement
