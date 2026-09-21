@@ -67,8 +67,21 @@ def append_column(X, col):
 
     return X
 
-# Step 6 - one_hot_encode (not yet solved)
-# TODO: implement
+# Step 6 - one_hot_encode
+def one_hot_encode(labels):
+    
+    uniqe = np.unique(labels)
+    uniqe.sort()
+
+    N:int = len(labels)
+    C:int = len(uniqe)
+
+    encoded = np.zeros((N,C))
+
+    mask = labels[:,None] == uniqe[None,:]
+    encoded[mask] = 1.0
+
+    return encoded
 
 # Step 7 - fit_standardizer (not yet solved)
 # TODO: implement
