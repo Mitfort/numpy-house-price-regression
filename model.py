@@ -133,8 +133,6 @@ def subset_xy(X, y, indices):
 
 # Step 13 - ols_fit
 def ols_fit(X, y):
-    D:int = X.shape[1]
-
     theta = np.linalg.inv(X.T @ X) @ X.T @ y
 
     return theta
