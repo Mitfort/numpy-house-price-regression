@@ -53,8 +53,19 @@ def make_ratio_feature(numerator, denominator, eps=1e-8):
 
     return res
 
-# Step 5 - append_column (not yet solved)
-# TODO: implement
+# Step 5 - append_column
+def append_column(X, col):
+    
+    n:int = X.shape[0]
+
+    if len(col) != n:
+        raise ValueError(f"Wrong column shape, which should be {(n,1)}")
+
+    col = col.reshape(-1,1)
+
+    X = np.concatenate([X,col],axis=1)
+
+    return X
 
 # Step 6 - one_hot_encode (not yet solved)
 # TODO: implement
