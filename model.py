@@ -133,9 +133,9 @@ def subset_xy(X, y, indices):
 
 # Step 13 - ols_fit
 def ols_fit(X, y):
-    theta = np.linalg.inv(X.T @ X) @ X.T @ y
+    # theta = np.linalg.inv(X.T @ X) @ X.T @ y
 
-    return theta
+    return np.linalg.pinv(X) @ y
 
 # Step 14 - ols_predict
 def ols_predict(X, theta):
@@ -297,8 +297,8 @@ def house_price_pipeline(X, y, ratio_num_idx, ratio_den_idx, cat_labels=None, tr
     pred_val = ols_predict(std_splits['X_val'],theta)
     pred_test = ols_predict(std_splits['X_test'],theta)
 
-    val_metrics = evaluate_predictions(y_val,pred_val)
-    test_metrics = evaluate_predictions(y_test,pred_test)
+    val_metrics = evaluate_predictions(std_splits['y_val'],pred_val)
+    test_metrics = evaluate_predictions(std_splits['y_test'],pred_test)
 
     return {
         'theta': theta,
